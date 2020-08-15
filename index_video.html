@@ -5,16 +5,38 @@
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
+
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+
 </head>
 
 <body>
 
     <h1>Sam & Charlie Wedding</h1>
     <p>Our live video will start here between 5 and 15 minutes prior to our wedding service.</p>
+    <p><a href="/order_of_service.pdf">Download the Order Of Service</a></p>
 
-    <p>
-        <img src="image.jpg" srcset="image.jpg 2x" class="image" />
-    </p>
+    <div id="error" style="display: none;">
+        <br /><br />
+        <p>Video not available in your region.</p>
+    </div>
+
+    <div class="container">
+        <iframe src="https://www.youtube.com/embed/EHuctvvwJNg?rel=0&modestbranding=1&disablekb=1&autoplay=1"
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen class="video">
+        </iframe>
+    </div>
+
+    <script>
+        if (geoplugin_continentCode() != 'EU') {
+            var elem = document.querySelector('.container');
+            elem.parentNode.removeChild(elem);
+
+            var elem = document.querySelector('#error');
+            elem.style.display = "block"
+        }
+    </script>
 
     <!-- Default Statcounter code for SamAndCharlie https://samandcharlie.com -->
     <script type="text/javascript">
