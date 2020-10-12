@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title></title>
+<title>A</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -84,7 +84,7 @@ div.vertical {
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 
 
-	 <script type="text/javascript" src="https://rawcdn.githack.com/chrisveness/crypto/7067ee62f18c76dd4a9d372a00e647205460b62b/sha1.js"></script>
+	 <script type="text/javascript" src="./sha1.js"></script>
 
 	<script type="text/javascript">
 	"use strict";
@@ -92,8 +92,8 @@ div.vertical {
 
 	function loadPage(pwd) {
 
-		var hash= pwd.toLowerCase();
-		hash= Sha1.hash(pwd);
+		var hash= pwd;
+		hash= Sha1.hash(pwd.toLowerCase());
 		var url= hash + "/index.html";
 
 		$.ajax({
