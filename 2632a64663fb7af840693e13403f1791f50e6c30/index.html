@@ -11,9 +11,15 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
-    <!-- Following tutorial at: https://www.w3schools.com/css/css_image_gallery.asp -->
-
     <style>
+        .bottomPadding {
+            margin-top: 40px;
+            margin-bottom: 40px;
+            border-top: 1px dashed #aaaaaa;
+            float: left;
+            width: 100%;
+        }
+
         /* div.gallery {
             border: 1px solid #ccc;
         }
@@ -24,7 +30,8 @@
 
         div.gallery img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: contain;
         }
 
         * {
@@ -63,88 +70,224 @@
 
     <h1>Mr. & Mrs. Heather</h1>
     <h2>Our Wedding Day</h2>
-    <p>Thank you for joining us. Below is a selection of our favourite photos from the day. Click on any photo to see it larger.</p>
+    <p>Thank you for joining us. Below is a selection of our favourite photos from the day. Click on any photo to see it
+        larger.</p>
 
-    <div class="responsive">
-        <div class="gallery">
-            <a href="photos/1.jpeg">
-                <img src="photos/1.jpeg" width="600" height="400">
-            </a>
-            
-        </div>
+    <p>
+    <div>
+        <div id="photoList"></div>
+    </div>
+    </p>
+
+    <div class="bottomPadding">
+        <h2>
+            29th August 2020
+        </h2>
     </div>
 
-    <div class="responsive">
-        <div class="gallery">
-            <a href="photos/2.jpeg">
-                <img src="photos/2.jpeg" width="600" height="400">
-            </a>
-            
-        </div>
-    </div>
+    <script>
 
-    <div class="responsive">
-        <div class="gallery">
-            <a href="photos/3.jpeg">
-                <img src="photos/3.jpeg" width="600" height="400">
-            </a>
-            
-        </div>
-    </div>
+        // Script designed to replicate this HTML:
+        //     <div class="responsive">
+        //         <div class="gallery">
+        //             <a href="photos/3.jpeg">
+        //                 <img src="photos/3.jpeg" width="600" height="400">
+        //             </a>
 
-    <div class="responsive">
-        <div class="gallery">
-            <a href="photos/1.jpeg">
-                <img src="photos/1.jpeg" width="600" height="400">
-            </a>
-            
-        </div>
-    </div>
+        //         </div>
+        //     </div>
 
-    <div class="responsive">
-        <div class="gallery">
-            <a href="photos/2.jpeg">
-                <img src="photos/2.jpeg" width="600" height="400">
-            </a>
-            
-        </div>
-    </div>
 
-    <div class="responsive">
-        <div class="gallery">
-            <a href="photos/3.jpeg">
-                <img src="photos/3.jpeg" width="600" height="400">
-            </a>
-            
-        </div>
-    </div>
+        let items = [
+            '001',
+            '003',
+            '007',
+            '009',
+            '011',
+            '012',
+            '016',
+            '021',
+            '024',
+            '026',
+            '029',
+            '031',
+            '033',
+            '037',
+            '040',
+            '044',
+            '046',
+            '047',
+            '048',
+            '049',
+            '052',
+            '054',
+            '058',
+            '059',
+            '061',
+            '065',
+            '070',
+            '072',
+            '077',
+            '078',
+            '081',
+            '082',
+            '088',
+            '089',
+            '092',
+            '095',
+            '100',
+            '102',
+            '105',
+            '106',
+            '108',
+            '111',
+            '114',
+            '115',
+            '116',
+            '117',
+            '118',
+            '124',
+            '125',
+            '129',
+            '132',
+            '138',
+            '140',
+            '142',
+            '144',
+            '149',
+            '151',
+            '156',
+            '158',
+            '163',
+            '164',
+            '166',
+            '169',
+            '171',
+            '174',
+            '177',
+            '178',
+            '180',
+            '182',
+            '185',
+            '186',
+            '187',
+            '189',
+            '190',
+            '191',
+            '192',
+            '194',
+            '196',
+            '197',
+            '199',
+            '201',
+            '204',
+            '207',
+            '209',
+            '212',
+            '216',
+            '219',
+            '221',
+            '227',
+            '230',
+            '231',
+            '233',
+            '237',
+            '238',
+            '239',
+            '240',
+            '241',
+            '243',
+            '250',
+            '251',
+            '254',
+            '255',
+            '262',
+            '269',
+            '273',
+            '275',
+            '278',
+            '283',
+            '290',
+            '295',
+            '297',
+            '300',
+            '304',
+            '305',
+            '306',
+            '310',
+            '315',
+            '316',
+            '322',
+            '323',
+            '324',
+            '327',
+            '329',
+            '331',
+            '338',
+            '340',
+            '342',
+            '344',
+            '347',
+            '350',
+            '352',
+            '353',
+            '357',
+            '368',
+            '374',
+            '376',
+            '385',
+            '387',
+            '394',
+            '397',
+            '398',
+            '399',
+            '400',
+            '401',
+            '402',
+            '403',
+            '405',
+            '408',
+            '409',
+            '410',
+            '415'
+        ],
 
-    <div class="responsive">
-        <div class="gallery">
-            <a href="photos/1.jpeg">
-                <img src="photos/1.jpeg" width="600" height="400">
-            </a>
-            
-        </div>
-    </div>
+            parent = document.getElementById('photoList')
 
-    <div class="responsive">
-        <div class="gallery">
-            <a href="photos/2.jpeg">
-                <img src="photos/2.jpeg" width="600" height="400">
-            </a>
-            
-        </div>
-    </div>
+        items.forEach(function (item) {
+            let outerDiv = document.createElement('div');
+            outerDiv.setAttribute('class', 'responsive');
 
-    <div class="responsive">
-        <div class="gallery">
-            <a href="photos/3.jpeg">
-                <img src="photos/3.jpeg" width="600" height="400">
-            </a>
-            
-        </div>
-    </div>
+            let innerDiv = document.createElement('div');
+            innerDiv.setAttribute('class', 'gallery');
 
+            let link = document.createElement('a');
+            link.setAttribute('href', 'photos-5000px/Charlotte-and-Sam_' + item + '.jpg');
+
+            let img = document.createElement('img');
+            img.setAttribute('src', 'thumbs/Charlotte-and-Sam_' + item + '.jpg');
+            img.setAttribute('srcset', 'thumbs_2x/Charlotte-and-Sam_' + item + '.jpg 2x');
+
+            parent.appendChild(outerDiv);
+            outerDiv.appendChild(innerDiv);
+            innerDiv.appendChild(link);
+            link.appendChild(img);
+
+            // link.innerHTML += 'hello';
+        });
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $(window).ready(updateHeight);
+        $(window).resize(updateHeight);
+
+        function updateHeight() {
+            var div = $('.responsive');
+            var width = div.width();
+
+            div.css('height', width * 2 / 3);
+        }
+    </script>
 
 </body>
