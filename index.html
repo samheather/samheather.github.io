@@ -1,43 +1,147 @@
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>Wedding</title>
-    <link rel="stylesheet" href="styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex">
+	<title>Wedding</title>
+	<link rel="stylesheet" href="styles.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noindex">
 
-    <!-- No cache -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
+	<!-- No cache -->
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+
 </head>
+
+<style>
+	/* body {
+
+	background-image: url('grunge_patterns.jpg');
+	background-attachment: fixed;
+	color: #333;
+}
+
+.box {
+	border-radius: 3px;
+	background: rgba(101, 101, 101, 0.7); margin: auto; padding: 12px;
+} */
+
+	.lightbox {
+		zoom: 1.5;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		/* background: rgba(10, 10, 10, 0.8); */
+		text-align: center;
+		margin: auto;
+
+	}
+
+	div.horizontal {
+		display: flex;
+		justify-content: center;
+		height: 100%;
+	}
+
+	div.vertical {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: 100%;
+	}
+
+	::-webkit-input-placeholder {
+		color: #955;
+		text-align: center;
+	}
+
+	::-moz-placeholder {
+		color: #955;
+		text-align: center;
+	}
+
+	:-ms-input-placeholder {
+		color: #955;
+		text-align: center;
+	}
+</style>
 
 <body>
 
-    <h1>Sam & Charlie Wedding</h1>
-    <p>Our live video will start here between 5 and 15 minutes prior to our wedding service.</p>
-    <p>We will make an album of photos of everyone watching our wedding.<br /> We would love it if you could send a photo of you watching our wedding to <a href="mailto:samandcharlie@heather.sh">samandcharlie@heather.sh</a>.</p>
-    <p><a href="order_of_service.pdf">Download the Order of Service</a></p>
+	<h1>Mr. & Mrs. Heather</h1>
+	<h2>Our Wedding Day</h2>
+	<p>Please enter the password we sent you to see our wedding photos below.</p>
 
-    <div class="container">
-        <iframe src="https://www.youtube.com/embed/tFHmQQh9EPY?rel=0&modestbranding=1&disablekb=1&autoplay=1"
-            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen class="video">
-        </iframe>
-    </div>
+	<div id="loginbox" class="lightbox">
+		<div class="horizontal">
+			<div class="vertical">
+				<div class="box">
+					<input style="margin: 16px; text-align: center;" id="password" type="password"
+						placeholder="password" /> <br />
+					<button id="loginbutton" type="button">Enter</button>
+					<p id="wrongPassword" style="display: none">wrong password</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <!-- Default Statcounter code for SamAndCharlie https://samandcharlie.com -->
-    <script type="text/javascript">
-        var sc_project = 12363452;
-        var sc_invisible = 1;
-        var sc_security = "3df9dd35"; 
-    </script>
-    <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
-    <noscript>
-        <div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img
-                    class="statcounter" src="https://c.statcounter.com/12363452/0/3df9dd35/1/" alt="Web Analytics"></a>
-        </div>
-    </noscript>
-    <!-- End of Statcounter Code -->
+
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+
+	<!-- <script type="module" src="https://samandcharlie.com/sha1.js"></script> -->
+	<!-- <script type="text/javascript" src="https://rawcdn.githack.com/chrisveness/crypto/7067ee62f18c76dd4a9d372a00e647205460b62b/sha1.js"></script> -->
+	<!-- <script type="text/plain" src="https://raw.githubusercontent.com/samheather/samheather.github.io/master/sha1.js"></script> -->
+	<script src="./sha1.js"></script>
+
+	<script type="text/javascript">
+		"use strict";
+
+
+		function loadPage(pwd) {
+
+			var hash = pwd;
+			hash = Sha1.hash(pwd.toLowerCase());
+			var url = hash + "/index.html";
+
+			$.ajax({
+				url: url,
+				dataType: "html",
+				success: function (data) {
+
+					window.location = url;
+
+				},
+				error: function (xhr, ajaxOptions, thrownError) {
+
+
+					parent.location.hash = hash;
+
+					//$("#wrongPassword").show();
+					$("#password").attr("placeholder", "wrong password");
+					$("#password").val("");
+				}
+			});
+		}
+
+
+		$("#loginbutton").on("click", function () {
+			loadPage($("#password").val());
+		});
+		$("#password").keypress(function (e) {
+			if (e.which == 13) {
+
+				loadPage($("#password").val());
+			}
+		});
+		$("#password").focus();
+
+	</script>
 
 </body>
+
+</html>
